@@ -7,13 +7,13 @@
       <th scope="col">Email</th>
       <th scope="col">Mobile</th>
       <th scope="col">Address</th>
+      <th scope="col"></th>
     </tr>
   </thead>
   <tbody>
     <tr
       *ngFor="let customer of customers; index as i"
       [class.active]="i == currentIndex"
-      (click)="setActiveCustomer(customer, i)"
     >
       <td>
         {{ customer.id }}
@@ -26,33 +26,44 @@
         {{ customer.address.street }} {{ customer.address.state }}
         {{ customer.address.postCode }}
       </td>
+      <td>
+        <button class="btn btn-info" (click)="setActiveCustomer(customer, i)">
+          Select
+        </button>
+      </td>
     </tr>
   </tbody>
 </table>
-<div class="list row">
-  <div class="col-md-6">
-    <div *ngIf="currentCustomer.id">
-      <div>
-        <label><strong>First name:</strong></label>
-        {{ currentCustomer.firstName }}
-      </div>
-      <div>
-        <label><strong>Last name:</strong></label>
-        {{ currentCustomer.lastName }}
-      </div>
-      <div>
-        <label><strong>Email:</strong></label>
-        {{ currentCustomer.email }}
-      </div>
-      <div>
-        <label><strong>Mobile:</strong></label>
-        {{ currentCustomer.mobileNumber }}
-      </div>
+<div class="row">
+  <div *ngIf="!currentCustomer">
+    <br />
+    <p>Please click on a Customer...</p>
+  </div>
+  <div *ngIf="currentCustomer.id">
+    <h4>Customer Details</h4>
+    <div>
+      <label><strong>First name:</strong></label>
+      {{ currentCustomer.firstName }}
     </div>
-
-    <div *ngIf="!currentCustomer">
-      <br />
-      <p>Please click on a Customer...</p>
+    <div>
+      <label><strong>Last name:</strong></label>
+      {{ currentCustomer.lastName }}
+    </div>
+    <div>
+      <label><strong>Email:</strong></label>
+      {{ currentCustomer.email }}
+    </div>
+    <div>
+      <label><strong>Mobile:</strong></label>
+      {{ currentCustomer.mobileNumber }}
+    </div>
+    <div>
+      <label><strong>Address:</strong></label>
+      {{ currentCustomer.address.street }}
+      {{ currentCustomer.address.city }}
+      {{ currentCustomer.address.state }}
+      {{ currentCustomer.address.postCode }}
+      {{ currentCustomer.address.country }}
     </div>
   </div>
 </div>

@@ -38,7 +38,7 @@ namespace Application.UnitTests.Services.Customers
         {
             // arrange
             var customer = GetCustomerDto();
-            customer.FirstName = null;
+            customer.FirstName = string.Empty;
             var customerService = new CustomerService(dataRepository.Object, mapper);
 
             // act/ assert
@@ -50,7 +50,7 @@ namespace Application.UnitTests.Services.Customers
         {
             // arrange
             var customer = GetCustomerDto();
-            customer.Email = null;
+            customer.Email = string.Empty;
             var customerService = new CustomerService(dataRepository.Object, mapper);
 
             // act/ assert
@@ -100,6 +100,7 @@ namespace Application.UnitTests.Services.Customers
 
             //assert
             Assert.IsNotNull(result);
+            Assert.IsNotEmpty(result);
             Assert.AreEqual(1, result?.Count);
         }
 

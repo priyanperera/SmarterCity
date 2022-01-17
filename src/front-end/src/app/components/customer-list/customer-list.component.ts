@@ -36,7 +36,6 @@ export class CustomerListComponent implements OnInit {
     this.customerService.getAllCustomers().subscribe(
       (data) => {
         this.customers = data;
-        console.log(data);
       },
       (error) => {
         console.log(error);

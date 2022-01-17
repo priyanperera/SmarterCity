@@ -11,11 +11,12 @@ namespace Domain.Entities
         public string MobileNumber { get; set; } = string.Empty;
         public Address? Address { get; set; }
 
+        // TODO: poor mans entity validation implementation
         public bool IsValid()
         {
             return
-                FirstName != null &&
-                Email != null &&
+                !string.IsNullOrEmpty(FirstName) &&
+                !string.IsNullOrEmpty(Email) &&
                 Address != null;
         }
     }

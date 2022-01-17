@@ -66,6 +66,7 @@
       <input
         class="form-control"
         ngx-google-places-autocomplete
+        [ngClass]="{ 'is-invalid': customerForm.submitted && name.invalid }"
         (onAddressChange)="handleAddressChange($event)"
       />
       <input
@@ -73,7 +74,6 @@
         name="address"
         #name="ngModel"
         [(ngModel)]="customer.address"
-        [ngClass]="{ 'is-invalid': customerForm.submitted && name.invalid }"
         required
       />
       <div
@@ -89,6 +89,6 @@
 
   <div *ngIf="submitted">
     <h4>Customer was created successfully!</h4>
-    <button class="btn btn-success" (click)="newCustomer()">Add</button>
+    <button class="btn btn-success" (click)="newCustomer()">Add another</button>
   </div>
 </form>

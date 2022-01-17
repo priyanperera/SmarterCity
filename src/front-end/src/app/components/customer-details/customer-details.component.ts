@@ -27,8 +27,7 @@ export class CustomerDetailsComponent implements OnInit {
 
   constructor(
     private customerService: CustomerService,
-    private route: ActivatedRoute,
-    private router: Router
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
@@ -40,7 +39,6 @@ export class CustomerDetailsComponent implements OnInit {
     this.customerService.getCustomer(id).subscribe(
       (data) => {
         this.currentCustomer = data;
-        console.log(data);
       },
       (error) => {
         console.log(error);
