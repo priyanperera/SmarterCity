@@ -1,0 +1,58 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">First name</th>
+      <th scope="col">Last name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Mobile</th>
+      <th scope="col">Address</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr
+      *ngFor="let customer of customers; index as i"
+      [class.active]="i == currentIndex"
+      (click)="setActiveCustomer(customer, i)"
+    >
+      <td>
+        {{ customer.id }}
+      </td>
+      <td>{{ customer.firstName }}</td>
+      <td>{{ customer.lastName }}</td>
+      <td>{{ customer.email }}</td>
+      <td>{{ customer.mobileNumber }}</td>
+      <td>
+        {{ customer.address.street }} {{ customer.address.state }}
+        {{ customer.address.postCode }}
+      </td>
+    </tr>
+  </tbody>
+</table>
+<div class="list row">
+  <div class="col-md-6">
+    <div *ngIf="currentCustomer.id">
+      <div>
+        <label><strong>First name:</strong></label>
+        {{ currentCustomer.firstName }}
+      </div>
+      <div>
+        <label><strong>Last name:</strong></label>
+        {{ currentCustomer.lastName }}
+      </div>
+      <div>
+        <label><strong>Email:</strong></label>
+        {{ currentCustomer.email }}
+      </div>
+      <div>
+        <label><strong>Mobile:</strong></label>
+        {{ currentCustomer.mobileNumber }}
+      </div>
+    </div>
+
+    <div *ngIf="!currentCustomer">
+      <br />
+      <p>Please click on a Customer...</p>
+    </div>
+  </div>
+</div>

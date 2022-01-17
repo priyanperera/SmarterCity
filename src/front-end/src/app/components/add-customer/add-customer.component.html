@@ -1,0 +1,94 @@
+<form
+  #customerForm="ngForm"
+  class="submit-form"
+  (ngSubmit)="customerForm.form.valid && saveCustomer(customerForm)"
+>
+  <div *ngIf="!submitted">
+    <div class="form-group">
+      <label for="firstName">First name</label>
+      <input
+        type="text"
+        class="form-control"
+        name="firstName"
+        #name="ngModel"
+        [(ngModel)]="customer.firstName"
+        [ngClass]="{ 'is-invalid': customerForm.submitted && name.invalid }"
+        required
+      />
+      <div
+        class="invalid-feedback"
+        *ngIf="customerForm.submitted && name.invalid"
+      >
+        <p *ngIf="name.errors?.['required']">First name is required</p>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="lastName">Last name</label>
+      <input
+        class="form-control"
+        [(ngModel)]="customer.lastName"
+        name="lastName"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input
+        type="email"
+        class="form-control"
+        name="email"
+        #name="ngModel"
+        [(ngModel)]="customer.email"
+        [ngClass]="{ 'is-invalid': customerForm.submitted && name.invalid }"
+        required
+      />
+      <div
+        class="invalid-feedback"
+        *ngIf="customerForm.submitted && name.invalid"
+      >
+        <p *ngIf="name.errors?.['required']">Email is required</p>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="mobileNumnber">Mobile number</label>
+      <input
+        type="tel"
+        class="form-control"
+        [(ngModel)]="customer.mobileNumber"
+        name="mobileNumber"
+      />
+    </div>
+
+    <div class="form-group">
+      <label>Address</label>
+      <input
+        class="form-control"
+        ngx-google-places-autocomplete
+        (onAddressChange)="handleAddressChange($event)"
+      />
+      <input
+        type="hidden"
+        name="address"
+        #name="ngModel"
+        [(ngModel)]="customer.address"
+        [ngClass]="{ 'is-invalid': customerForm.submitted && name.invalid }"
+        required
+      />
+      <div
+        class="invalid-feedback"
+        *ngIf="customerForm.submitted && name.invalid"
+      >
+        <p *ngIf="name.errors?.['required']">Address is required</p>
+      </div>
+    </div>
+
+    <button class="btn btn-danger btn-block">Submit</button>
+  </div>
+
+  <div *ngIf="submitted">
+    <h4>Customer was created successfully!</h4>
+    <button class="btn btn-success" (click)="newCustomer()">Add</button>
+  </div>
+</form>

@@ -1,0 +1,61 @@
+<div>
+  <div *ngIf="currentCustomer.id" class="edit-form">
+    <h4>Customer</h4>
+    <form>
+      <div class="form-group">
+        <label for="firstName">First name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="firstName"
+          [(ngModel)]="currentCustomer.firstName"
+          name="firstName"
+        />
+      </div>
+      <div class="form-group">
+        <label for="lastName">Last name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="lastName"
+          [(ngModel)]="currentCustomer.lastName"
+          name="lastName"
+        />
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          type="text"
+          class="form-control"
+          id="email"
+          [(ngModel)]="currentCustomer.email"
+          name="email"
+        />
+      </div>
+      <div class="form-group">
+        <label for="mobileNumnber">Email</label>
+        <input
+          type="text"
+          class="form-control"
+          id="mobileNumnber"
+          [(ngModel)]="currentCustomer.mobileNumber"
+          name="mobileNumnber"
+        />
+      </div>
+    </form>
+
+    <!-- <button
+      type="submit"
+      class="badge badge-success mb-2"
+      (click)="updateTutorial()"
+    >
+      Update
+    </button> -->
+    <p>{{ message }}</p>
+  </div>
+
+  <div *ngIf="!currentCustomer.id">
+    <br />
+    <p>Cannot access this Customer...</p>
+  </div>
+</div>
