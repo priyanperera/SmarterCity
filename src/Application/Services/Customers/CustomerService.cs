@@ -1,7 +1,6 @@
 ﻿using Application.Common.Interfaces;
 using AutoMapper;
 using Domain.Entities;
-using Microsoft.EntityFrameworkCore;
 
 namespace Application.Services.Customers
 {
@@ -18,17 +17,17 @@ namespace Application.Services.Customers
 
         public async Task<CustomerDto> CreateCustomer(CustomerDto customerDto)
         {
-            var dto = mapper.Map<CustomerDto, Customer>(customerDto);
+            var customer = mapper.Map<CustomerDto, Customer>(customerDto);
 
-            if (!dto.IsValid())
+            if (!customer.IsValid())
                 throw new ApplicationException("Validation failed for Customer object");
 
-            var result = await dataRepository.Create(dto);
+            var result = await dataRepository.Create(customer);
 
             return mapper.Map<Customer, CustomerDto>(result);
         }
 
-        public IList<CustomerDto> GetAllCustomers()
+        public IList<CustomerDto>? GetAllCustomers()
         {
             var customers = dataRepository.Query<Customer>().ToList();
             if (customers.Any())
@@ -39,9 +38,9 @@ namespace Application.Services.Customers
             return null;
         }
 
-        public async Task<CustomerDto> GetCustomer(int id)
+        public async Task<CustomerDto?> GetCustomer(int id)
         {
-            var customer = await dataRepository.Query<Customer>().FirstOrDefaultAsync(x => x.Id == id);
+            var customer = await dataRepository.GetFirstOrDefault<Customer>(x => x.Id == id);
             if (customer == null) return null;
             var result = mapper.Map<Customer, CustomerDto>(customer);
             return result;

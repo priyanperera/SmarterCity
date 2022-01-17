@@ -10,6 +10,7 @@ namespace Infrastructure.Persistence.Configurations
         {
             builder.HasKey(x => x.Id);
             builder.Property(x => x.FirstName).IsRequired();
+            builder.Property(x => x.Email).IsRequired();
 
             builder.OwnsOne(x => x.Address);
         }

@@ -21,7 +21,7 @@ namespace Infrastructure.Repositories
             return entity;
         }
 
-        public async Task<T> GetFirst<T>(Expression<Func<T, bool>> predicate) where T : class
+        public async Task<T> GetFirstOrDefault<T>(Expression<Func<T, bool>> predicate) where T : class
         {
             return await Set<T>().FirstOrDefaultAsync(predicate);
         }
